@@ -109,9 +109,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OnlineShop\OnlineShop.csproj">
+    <ProjectReference Include="..\OnlineShop\OnlineShop.WebAPI.csproj">
       <Project>{808934A6-FB53-44D5-986F-79AFE28BA53E}</Project>
-      <Name>OnlineShop</Name>
+      <Name>OnlineShop.WebAPI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
