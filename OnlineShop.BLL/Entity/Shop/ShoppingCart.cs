@@ -3,7 +3,7 @@ using OnlineShop.BLL.Interfaces.OrderInterfaces;
 
 namespace OnlineShop.BLL.Entity.Shop
 {
-	class ShoppingCart : IShoppingCart
+	public class ShoppingCart : IShoppingCart
 	{
 		public ShoppingCart()
 		{
@@ -11,6 +11,7 @@ namespace OnlineShop.BLL.Entity.Shop
 		}
 
 		public List<ShoppingCartItem> Items { get; set; }
+
 		public double overallPrice { get; set; }
 	}
 }

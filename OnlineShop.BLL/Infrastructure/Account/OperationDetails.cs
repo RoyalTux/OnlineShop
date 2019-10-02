@@ -1,6 +1,6 @@
 ﻿namespace OnlineShop.BLL.Infrastructure.Account
 {
-	class OperationDetails
+	public class OperationDetails
 	{
 		public OperationDetails(bool succeeded, string message, string property)
 		{
@@ -8,8 +8,11 @@
 			Message = message;
 			Property = property;
 		}
-		public bool Succeeded { get; private set; }
-		public string Message { get; private set; }
-		public string Property { get; private set; }
+
+		private bool Succeeded { get; set; }
+
+		private string Message { get; set; }
+
+		private string Property { get; set; }
 	}
 }

@@ -2,9 +2,10 @@
 
 namespace OnlineShop.BLL.Dto
 {
-	class CategoryDto
+	public class CategoryDto
 	{
 		public int CategoryId { get; set; }
+
 		public string CategoryName { get; set; }
 
 		public ICollection<ItemDto> Items { get; set; }

@@ -2,7 +2,7 @@
 
 namespace OnlineShop.BLL.Interfaces.OrderInterfaces
 {
-	interface IUserService
+	public interface IUserService
 	{
 		bool AddItem(ItemDto item, int quantity, IShoppingCart itemCollection);
 		bool RemoveItem(ItemDto item, IShoppingCart itemCollection);

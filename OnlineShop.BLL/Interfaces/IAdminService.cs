@@ -2,7 +2,7 @@
 
 namespace OnlineShop.BLL.Interfaces
 {
-	interface IAdminService
+	public interface IAdminService
 	{
 		bool AddCategory(CategoryDto categoryDto);
 		bool UpdateCategory(CategoryDto categoryDto);

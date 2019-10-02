@@ -6,8 +6,8 @@ namespace OnlineShop.Domain.Context
 {
 	public class AccountDbContext : IdentityDbContext<ShopUser>
 	{
-		public AccountDbContext(string conectionString) : base(conectionString) { }
+		public AccountDbContext(string connectionString) : base(connectionString) { }
 
-		public DbSet<UserProfile> UserProfiles { get; set; }
+		public static DbSet<UserProfile> UserProfiles => null;
 	}
 }

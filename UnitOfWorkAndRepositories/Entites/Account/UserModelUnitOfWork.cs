@@ -1,6 +1,6 @@
-﻿namespace OnlineShop.BLL.Dto
+﻿namespace UnitOfWorkAndRepositories.Entites.Account
 {
-	public class UserDto
+	public class UserModelUnitOfWork
 	{
 		public string Id { get; set; }
 

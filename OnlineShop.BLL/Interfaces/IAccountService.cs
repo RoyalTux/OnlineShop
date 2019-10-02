@@ -5,7 +5,7 @@ using OnlineShop.BLL.Infrastructure.Account;
 
 namespace OnlineShop.BLL.Interfaces
 {
-	interface IAccountService
+	public interface IAccountService
 	{
 		OperationDetails Create(UserDto userDto);
 		ClaimsIdentity Authenticate(UserDto userDto);

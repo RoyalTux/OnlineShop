@@ -1,6 +1,6 @@
 ﻿namespace OnlineShop.BLL.Interfaces
 {
-	interface IAccountServiceCreator
+	public interface IAccountServiceCreator
 	{
 		IAccountService CreateAccountService(string connection);
 	}

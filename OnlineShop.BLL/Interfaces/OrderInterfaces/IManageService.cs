@@ -2,7 +2,7 @@
 
 namespace OnlineShop.BLL.Interfaces.OrderInterfaces
 {
-	interface IManageService
+	public interface IManageService
 	{
 		void ConfirmOrder(int id);
 		void DeclineOrder(int id);

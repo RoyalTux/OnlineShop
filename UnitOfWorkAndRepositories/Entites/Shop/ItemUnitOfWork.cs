@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace OnlineShop.BLL.Dto
+namespace UnitOfWorkAndRepositories.Entites.Shop
 {
-	public class ItemDto
+	public class ItemUnitOfWork
 	{
 		public int ItemId { get; set; }
 
@@ -16,17 +16,18 @@ namespace OnlineShop.BLL.Dto
 
 		public int Quantity { get; set; }
 
-		public ItemFeaturesDto ItemFeatures { get; set; }
+		public ItemFeatureUnitOfWork ItemCharacteristic { get; set; }
+
 
 		public int? CategoryId { get; set; }
 
-		public CategoryDto Category { get; set; }
+		public CategoryUnitOfWork Category { get; set; }
 
-		public ICollection<OrderDto> Orders { get; set; }
+		public ICollection<OrderUnitOfWork> Orders { get; set; }
 
-		public ItemDto()
+		public ItemUnitOfWork()
 		{
-			Orders = new List<OrderDto>();
+			Orders = new List<OrderUnitOfWork>();
 		}
 	}
 }
