@@ -7,7 +7,7 @@ namespace UnitOfWorkAndRepositories.Realization.Repositories.Account
 {
 	public class ProfileManager : IProfileManager
 	{
-		public AccountDbContext Database { get; set; }
+		private AccountDbContext Database { get; set; }
 
 		public ProfileManager(AccountDbContext db)
 		{
@@ -17,7 +17,7 @@ namespace UnitOfWorkAndRepositories.Realization.Repositories.Account
 		public void Create(UserProfileUnitOfWork userProfile)
 		{
 
-			UserProfile profile = new UserProfile()
+			var profile = new UserProfile()
 			{
 				Id = userProfile.Id,
 				Address = userProfile.Address,
