@@ -19,30 +19,30 @@ namespace UnitOfWorkAndRepositories.Realization.UnitOfWork
 
 		public ShopUnitOfWork(string connectionString, IMapper mapper)
 		{
-			_dbContext = new EfShopContext(connectionString);
-			_mapper = mapper;
+			this._dbContext = new EfShopContext(connectionString);
+			this._mapper = mapper;
 		}
 
 		public ICategoryRepository Categories =>
-			_categoryRepository ?? (_categoryRepository = new CategoryRepository(_dbContext, _mapper));
+			this._categoryRepository ?? (this._categoryRepository = new CategoryRepository(this._dbContext, this._mapper));
 
 		public IItemFeatureRepository ItemFeatures =>
-			_itemFeatureRepository ?? (_itemFeatureRepository = new ItemFeatureRepository(_dbContext, _mapper));
+			this._itemFeatureRepository ?? (this._itemFeatureRepository = new ItemFeatureRepository(this._dbContext, this._mapper));
 
 		public IItemRepository Items =>
-			_itemRepository ?? (_itemRepository = new ItemRepository(_dbContext, _mapper));
+			this._itemRepository ?? (this._itemRepository = new ItemRepository(this._dbContext, this._mapper));
 
 		public IOrderRepository Orders =>
-			_orderRepository ?? (_orderRepository = new OrderRepository(_dbContext, _mapper));
+			this._orderRepository ?? (this._orderRepository = new OrderRepository(this._dbContext, this._mapper));
 
 		public int Save()
 		{
-			return _dbContext.SaveChanges();
+			return this._dbContext.SaveChanges();
 		}
 
 		public void Dispose()
 		{
-			Dispose(true);
+			this.Dispose(true);
 			GC.SuppressFinalize(this);
 		}
 
@@ -51,10 +51,13 @@ namespace UnitOfWorkAndRepositories.Realization.UnitOfWork
 		private void Dispose(bool disposing)
 		{
 			if (!this._disposed)
+			{
 				if (disposing)
 				{
-					_dbContext?.Dispose();
+					this._dbContext?.Dispose();
 				}
+			}
+
 			this._disposed = true;
 		}
 	}

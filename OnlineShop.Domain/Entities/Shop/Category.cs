@@ -7,6 +7,7 @@ namespace OnlineShop.Domain.Entities.Shop
 	{
 		[Key]
 		public int CategoryId { get; set; }
+
 		[Required]
 		[StringLength(30, MinimumLength = 5, ErrorMessage = "Invalid category name length")]
 		public string CategoryName { get; set; }
@@ -15,7 +16,7 @@ namespace OnlineShop.Domain.Entities.Shop
 
 		public Category()
 		{
-			Items = new List<Item>();
+			this.Items = new List<Item>();
 		}
 	}
 }

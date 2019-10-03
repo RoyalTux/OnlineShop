@@ -12,7 +12,7 @@ namespace OnlineShop.BLL.Dto
 
 		public CategoryDto()
 		{
-			Items = new List<ItemDto>();
+			this.Items = new List<ItemDto>();
 		}
 	}
 }

@@ -6,7 +6,7 @@ namespace OnlineShop.Models.Shop.UserService
 	{
 		public ShoppingCartView()
 		{
-			items = new List<ShoppingCartItemView>();
+			this.items = new List<ShoppingCartItemView>();
 		}
 
 		private List<ShoppingCartItemView> items { get; set; }

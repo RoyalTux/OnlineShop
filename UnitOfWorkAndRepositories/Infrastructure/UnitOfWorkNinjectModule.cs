@@ -10,7 +10,6 @@ namespace UnitOfWorkAndRepositories.Infrastructure
 		private readonly string _shopConnectionString;
 		private readonly string _accountConnectionString;
 
-
 		public UnitOfWorkNinjectModule(string shopConnectionString, string accountConnectionString)
 		{
 			this._shopConnectionString = shopConnectionString;
@@ -19,8 +18,8 @@ namespace UnitOfWorkAndRepositories.Infrastructure
 
 		public override void Load()
 		{
-			Bind<IShopUnitOfWork>().To<ShopUnitOfWork>().WithConstructorArgument("connectionString", _shopConnectionString);
-			Bind<IAccountUnitOfWork>().To<AccountUnitOfWork>().WithConstructorArgument("connectionString", _accountConnectionString);
+			this.Bind<IShopUnitOfWork>().To<ShopUnitOfWork>().WithConstructorArgument("connectionString", this._shopConnectionString);
+			this.Bind<IAccountUnitOfWork>().To<AccountUnitOfWork>().WithConstructorArgument("connectionString", this._accountConnectionString);
 		}
 	}
 }

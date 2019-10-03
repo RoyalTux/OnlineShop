@@ -5,9 +5,13 @@ namespace OnlineShop.BLL.Interfaces.OrderInterfaces
 	public interface IUserService
 	{
 		bool AddItem(ItemDto item, int quantity, IShoppingCart itemCollection);
+
 		bool RemoveItem(ItemDto item, IShoppingCart itemCollection);
+
 		bool Clear(IShoppingCart itemCollection);
+
 		IShoppingCart ComposeCart(IShoppingCart itemCollection);
+
 		OrderDto MakeOrder(IShoppingCart cart);
 	}
 }

@@ -9,7 +9,9 @@ namespace OnlineShop.BLL.Interfaces
 	public interface IAccountService : IDisposable
 	{
 		OperationDetails Create(UserDto userDto);
+
 		ClaimsIdentity Authenticate(UserDto userDto);
+
 		void SetInitialData(UserDto adminDto, List<string> roles);
 	}
 }

@@ -10,6 +10,7 @@ namespace OnlineShop.Models.Entities
 		[Required]
 		[StringLength(30, MinimumLength = 5, ErrorMessage = "Invalid product name length")]
 		public string ItemName { get; set; }
+
 		public string ItemPhotoPath { get; set; }
 
 		[Required]
@@ -25,7 +26,6 @@ namespace OnlineShop.Models.Entities
 
 		public ItemFeaturesView ItemFeatures { get; set; }
 
-
 		public int? CategoryId { get; set; }
 		public CategoryView Category { get; set; }
 
@@ -33,7 +33,7 @@ namespace OnlineShop.Models.Entities
 
 		public ItemView()
 		{
-			Orders = new List<OrderView>();
+			this.Orders = new List<OrderView>();
 		}
 	}
 }

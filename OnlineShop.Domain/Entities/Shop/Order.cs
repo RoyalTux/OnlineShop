@@ -22,7 +22,7 @@ namespace OnlineShop.Domain.Entities.Shop
 
 		public Order()
 		{
-			Items = new List<Item>();
+			this.Items = new List<Item>();
 		}
 	}
 

@@ -33,11 +33,11 @@ namespace UnitOfWorkAndRepositories.Realization.UnitOfWork
 
 		public OperationDetailsUnitOfWork Create(UserModelUnitOfWork userDto)
 		{
-			var user = this.UserManager.FindByEmail(userDto.Email);
+			ShopUser user = this.UserManager.FindByEmail(userDto.Email);
 			if (user == null)
 			{
 				user = new ShopUser { Email = userDto.Email, UserName = userDto.Email };
-				var result = this.UserManager.Create(user, userDto.Password);
+				IdentityResult result = this.UserManager.Create(user, userDto.Password);
 				if (result.Errors.Any())
 				{
 					return new OperationDetailsUnitOfWork(false, result.Errors.FirstOrDefault(), "");
@@ -45,7 +45,7 @@ namespace UnitOfWorkAndRepositories.Realization.UnitOfWork
 
 				this.UserManager.AddToRole(user.Id, userDto.Role);
 
-				var clientProfile = new UserProfileUnitOfWork { Id = user.Id, Address = userDto.Address, Name = userDto.Name };
+				UserProfileUnitOfWork clientProfile = new UserProfileUnitOfWork { Id = user.Id, Address = userDto.Address, Name = userDto.Name };
 				this.ProfileManager.Create(clientProfile);
 				this.Save();
 				return new OperationDetailsUnitOfWork(true, "Registration completed successfully", "");
@@ -60,7 +60,7 @@ namespace UnitOfWorkAndRepositories.Realization.UnitOfWork
 		{
 			ClaimsIdentity claim = null;
 
-			var user = this.UserManager.Find(userDto.Email, userDto.Password);
+			ShopUser user = this.UserManager.Find(userDto.Email, userDto.Password);
 
 			if (user != null)
 			{
@@ -73,13 +73,15 @@ namespace UnitOfWorkAndRepositories.Realization.UnitOfWork
 
 		public void SetInitialData(UserModelUnitOfWork adminDto, List<string> roles)
 		{
-			foreach (var role in from roleName in roles let role = this.RoleManager.FindByName(roleName)
-				where role == null select new ShopRole { Name = roleName })
+			foreach (ShopRole role in from roleName in roles
+									  let role = this.RoleManager.FindByName(roleName)
+									  where role == null
+									  select new ShopRole { Name = roleName })
 			{
-				RoleManager.Create(role);
+				this.RoleManager.Create(role);
 			}
 
-			Create(adminDto);
+			this.Create(adminDto);
 		}
 
 		public void Save()
@@ -97,7 +99,11 @@ namespace UnitOfWorkAndRepositories.Realization.UnitOfWork
 
 		private void Dispose(bool disposing)
 		{
-			if (_disposed) return;
+			if (this._disposed)
+			{
+				return;
+			}
+
 			if (disposing)
 			{
 				this.UserManager.Dispose();

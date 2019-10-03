@@ -4,9 +4,9 @@
 	{
 		public OperationDetails(bool succeeded, string message, string property)
 		{
-			Succeeded = succeeded;
-			Message = message;
-			Property = property;
+			this.Succeeded = succeeded;
+			this.Message = message;
+			this.Property = property;
 		}
 
 		private bool Succeeded { get; set; }

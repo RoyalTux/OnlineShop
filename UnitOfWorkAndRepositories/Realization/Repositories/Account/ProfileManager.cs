@@ -11,25 +11,24 @@ namespace UnitOfWorkAndRepositories.Realization.Repositories.Account
 
 		public ProfileManager(AccountDbContext db)
 		{
-			Database = db;
+			this.Database = db;
 		}
 
 		public void Create(UserProfileUnitOfWork userProfile)
 		{
-
-			var profile = new UserProfile()
+			UserProfile profile = new UserProfile()
 			{
 				Id = userProfile.Id,
 				Address = userProfile.Address,
 				Name = userProfile.Name
 			};
 			AccountDbContext.UserProfiles.Add(profile);
-			Database.SaveChanges();
+			this.Database.SaveChanges();
 		}
 
 		public void Dispose()
 		{
-			Database.Dispose();
+			this.Database.Dispose();
 		}
 	}
 }

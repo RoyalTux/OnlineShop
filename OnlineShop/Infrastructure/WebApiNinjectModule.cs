@@ -8,7 +8,7 @@ namespace OnlineShop.Infrastructure
 	{
 		public override void Load()
 		{
-			Bind<IShoppingCart>().To<ShoppingCart>().InSingletonScope();
+			this.Bind<IShoppingCart>().To<ShoppingCart>().InSingletonScope();
 		}
 	}
 }

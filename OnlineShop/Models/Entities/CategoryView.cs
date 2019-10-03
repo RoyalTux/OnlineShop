@@ -15,7 +15,7 @@ namespace OnlineShop.Models.Entities
 
 		public CategoryView()
 		{
-			Items = new List<ItemView>();
+			this.Items = new List<ItemView>();
 		}
 	}
 }

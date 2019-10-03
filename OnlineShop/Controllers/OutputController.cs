@@ -19,6 +19,7 @@ namespace OnlineShop.Controllers
 			this._outputService = outputService;
 			this._mapper = mapper;
 		}
+
 		public OutputController()
 		{ }
 
@@ -26,53 +27,63 @@ namespace OnlineShop.Controllers
 		[Route("api/output/items/get/{id}")]
 		public IHttpActionResult GetItem(int id)
 		{
-			var item = _outputService.GetItem(id);
-			if (item == null) return NotFound();
-			var _item = _mapper.Map<ItemView>(item);
-			return Ok(_item);
+			BLL.Dto.ItemDto item = this._outputService.GetItem(id);
+			if (item == null)
+			{
+				return this.NotFound();
+			}
 
+			ItemView _item = this._mapper.Map<ItemView>(item);
+			return this.Ok(_item);
 		}
 
 		[HttpGet]
 		[Route("api/output/pagination")]
 		public IHttpActionResult PagingItemsList([FromUri]PaginationParams parameters)
 		{
-			if (!ModelState.IsValid) return BadRequest(ModelState);
-			var page = parameters.CurrentPage;
-			var pageSize = parameters.PageSize;
+			if (!this.ModelState.IsValid)
+			{
+				return this.BadRequest(this.ModelState);
+			}
 
-			var items = _outputService.GetItemsWithPagination(page, pageSize);
+			int page = parameters.CurrentPage;
+			int pageSize = parameters.PageSize;
+
+			IEnumerable<BLL.Dto.ItemDto> items = this._outputService.GetItemsWithPagination(page, pageSize);
 
 			if (!items.Any())
-				return NotFound();
-
-			var model = new ItemsListViewModel()
 			{
-				Items = _mapper.Map<IEnumerable<ItemView>>(items),
+				return this.NotFound();
+			}
+
+			ItemsListViewModel model = new ItemsListViewModel()
+			{
+				Items = this._mapper.Map<IEnumerable<ItemView>>(items),
 				PagingInfo = new PagingInfo()
 				{
 					CurrentPage = page,
 					ItemsPerPage = pageSize,
-					TotalItems = _outputService.GetAllItems().Count()
+					TotalItems = this._outputService.GetAllItems().Count()
 				}
 			};
 
-			return Ok(model);
-
+			return this.Ok(model);
 		}
 
 		[HttpGet]
 		[Route("api/output/all_items")]
 		public IHttpActionResult GetAllItems()
 		{
-			var items = _outputService.GetAllItems();
+			IEnumerable<BLL.Dto.ItemDto> items = this._outputService.GetAllItems();
 
 			if (!items.Any())
-				return NotFound();
+			{
+				return this.NotFound();
+			}
 
-			var _items = _mapper.Map<IEnumerable<ItemView>>(items);
+			IEnumerable<ItemView> _items = this._mapper.Map<IEnumerable<ItemView>>(items);
 
-			return Ok(_items);
+			return this.Ok(_items);
 		}
 	}
 }

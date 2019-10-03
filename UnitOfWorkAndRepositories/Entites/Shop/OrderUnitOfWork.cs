@@ -17,7 +17,7 @@ namespace UnitOfWorkAndRepositories.Entites.Shop
 
 		public OrderUnitOfWork()
 		{
-			Items = new List<ItemUnitOfWork>();
+			this.Items = new List<ItemUnitOfWork>();
 		}
 	}
 

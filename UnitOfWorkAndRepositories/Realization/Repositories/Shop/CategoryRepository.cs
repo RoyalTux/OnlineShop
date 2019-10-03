@@ -16,7 +16,7 @@ namespace UnitOfWorkAndRepositories.Realization.Repositories.Shop
 
 		public CategoryUnitOfWork GetById(int id)
 		{
-			var entity = Mapper.Map<CategoryUnitOfWork>(Dbset.Include(x => x.Items).FirstOrDefault(x => x.CategoryId == id));
+			CategoryUnitOfWork entity = this.Mapper.Map<CategoryUnitOfWork>(this.Dbset.Include(x => x.Items).FirstOrDefault(x => x.CategoryId == id));
 			return entity;
 		}
 	}

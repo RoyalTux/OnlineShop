@@ -29,12 +29,14 @@ namespace OnlineShop.Domain.Entities.Shop
 
 		[Column("CategoryId")]
 		public int? CategoryId { get; set; }
+
 		public Category Category { get; set; }
 
 		public ICollection<Order> Orders { get; set; }
+
 		public Item()
 		{
-			Orders = new List<Order>();
+			this.Orders = new List<Order>();
 		}
 	}
 }

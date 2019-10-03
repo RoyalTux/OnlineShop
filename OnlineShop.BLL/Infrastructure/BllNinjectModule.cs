@@ -11,12 +11,12 @@ namespace OnlineShop.BLL.Infrastructure
 	{
 		public override void Load()
 		{
-			Bind<IAdminService>().To<AdminService>();
-			Bind<IUserService>().To<UserService>().InSingletonScope();
-			Bind<IManageService>().To<ManageService>();
-			Bind<IShoppingCart>().To<ShoppingCart>().InSingletonScope();
-			Bind<IOutputService>().To<OutputService>();
-			Bind<IAccountService>().To<AccountService>();
+			this.Bind<IAdminService>().To<AdminService>();
+			this.Bind<IUserService>().To<UserService>().InSingletonScope();
+			this.Bind<IManageService>().To<ManageService>();
+			this.Bind<IShoppingCart>().To<ShoppingCart>().InSingletonScope();
+			this.Bind<IOutputService>().To<OutputService>();
+			this.Bind<IAccountService>().To<AccountService>();
 		}
 	}
 }

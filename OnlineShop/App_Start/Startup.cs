@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using OnlineShop.BLL.Interfaces;
@@ -16,7 +15,7 @@ namespace OnlineShop.App_Start
 
 		public void Configuration(IAppBuilder app)
 		{
-			app.CreatePerOwinContext(CreateAccountService);
+			app.CreatePerOwinContext(this.CreateAccountService);
 			app.UseCookieAuthentication(new CookieAuthenticationOptions
 			{
 				AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
@@ -26,7 +25,7 @@ namespace OnlineShop.App_Start
 
 		private IAccountService CreateAccountService()
 		{
-			return _serviceCreator.CreateAccountService("AccountConnection");
+			return this._serviceCreator.CreateAccountService("AccountConnection");
 		}
 	}
 }

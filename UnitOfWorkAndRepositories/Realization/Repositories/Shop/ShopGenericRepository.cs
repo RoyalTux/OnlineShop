@@ -17,41 +17,40 @@ namespace UnitOfWorkAndRepositories.Realization.Repositories.Shop
 
 		protected ShopGenericRepository(IEfShopContext context, IMapper mapper)
 		{
-			_entities = context;
-			Dbset = _entities.Set<TDomainEntity>();
+			this._entities = context;
+			this.Dbset = this._entities.Set<TDomainEntity>();
 			this.Mapper = mapper;
 		}
 
 		public virtual IEnumerable<TInputEntity> GetAll()
 		{
-			return Mapper.Map<IEnumerable<TInputEntity>>(Dbset.AsEnumerable<TDomainEntity>());
+			return this.Mapper.Map<IEnumerable<TInputEntity>>(this.Dbset.AsEnumerable<TDomainEntity>());
 		}
 
 		public virtual void Add(TInputEntity inputEntity)
 		{
-			var entity = Mapper.Map<TDomainEntity>(inputEntity);
-			Dbset.Add(entity);
+			TDomainEntity entity = this.Mapper.Map<TDomainEntity>(inputEntity);
+			this.Dbset.Add(entity);
 		}
 
 		public virtual void Delete(TInputEntity inputEntity)
 		{
-			var entity = Mapper.Map<TDomainEntity>(inputEntity);
-			Dbset.Remove(entity);
+			TDomainEntity entity = this.Mapper.Map<TDomainEntity>(inputEntity);
+			this.Dbset.Remove(entity);
 		}
 
 		public virtual void DeleteById(int id)
 		{
-			var findEntity = Dbset.Find(id);
-			Dbset.Remove(findEntity);
-			var entity = Mapper.Map<TInputEntity>(findEntity);
+			TDomainEntity findEntity = this.Dbset.Find(id);
+			this.Dbset.Remove(findEntity);
+			TInputEntity entity = this.Mapper.Map<TInputEntity>(findEntity);
 		}
 
 		public virtual void Edit(TInputEntity inputEntity)
 		{
-			var entity = Mapper.Map<TDomainEntity>(inputEntity);
+			TDomainEntity entity = this.Mapper.Map<TDomainEntity>(inputEntity);
 			//_entities.Entry(_entity).State = EntityState.Detached;
-			_entities.Entry(entity).State = EntityState.Modified;
-
+			this._entities.Entry(entity).State = EntityState.Modified;
 		}
 	}
 }

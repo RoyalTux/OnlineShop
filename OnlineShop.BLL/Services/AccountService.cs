@@ -14,12 +14,12 @@ namespace OnlineShop.BLL.Services
 
 		public AccountService(IAccountUnitOfWork uow)
 		{
-			Database = uow;
+			this.Database = uow;
 		}
 
 		public OperationDetails Create(UserDto userDto)
 		{
-			var userUnitOfWork = new UserModelUnitOfWork()
+			UserModelUnitOfWork userUnitOfWork = new UserModelUnitOfWork()
 			{
 				Email = userDto.Email,
 				Password = userDto.Password,
@@ -28,8 +28,8 @@ namespace OnlineShop.BLL.Services
 				Address = userDto.Address,
 				Role = userDto.Role
 			};
-			var operationDetailsUnitOfWork = Database.Create(userUnitOfWork);
-			var operationDetails = new OperationDetails(operationDetailsUnitOfWork.Succeeded,
+			OperationDetailsUnitOfWork operationDetailsUnitOfWork = this.Database.Create(userUnitOfWork);
+			OperationDetails operationDetails = new OperationDetails(operationDetailsUnitOfWork.Succeeded,
 				operationDetailsUnitOfWork.Message, operationDetailsUnitOfWork.Property);
 
 			return operationDetails;
@@ -37,7 +37,7 @@ namespace OnlineShop.BLL.Services
 
 		public ClaimsIdentity Authenticate(UserDto userDto)
 		{
-			var userUoW = new UserModelUnitOfWork()
+			UserModelUnitOfWork userUoW = new UserModelUnitOfWork()
 			{
 				Email = userDto.Email,
 				Password = userDto.Password,
@@ -46,12 +46,12 @@ namespace OnlineShop.BLL.Services
 				Address = userDto.Address,
 				Role = userDto.Role
 			};
-			return Database.Authenticate(userUoW);
+			return this.Database.Authenticate(userUoW);
 		}
 
 		public void SetInitialData(UserDto adminDto, List<string> roles)
 		{
-			var admin = new UserModelUnitOfWork()
+			UserModelUnitOfWork admin = new UserModelUnitOfWork()
 			{
 				Email = adminDto.Email,
 				Password = adminDto.Password,
@@ -60,13 +60,12 @@ namespace OnlineShop.BLL.Services
 				Address = adminDto.Address,
 				Role = adminDto.Role
 			};
-			Database.SetInitialData(admin, roles);
+			this.Database.SetInitialData(admin, roles);
 		}
 
 		public void Dispose()
 		{
-			Database.Dispose();
+			this.Database.Dispose();
 		}
-
 	}
 }

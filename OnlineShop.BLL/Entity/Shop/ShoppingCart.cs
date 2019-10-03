@@ -7,7 +7,7 @@ namespace OnlineShop.BLL.Entity.Shop
 	{
 		public ShoppingCart()
 		{
-			Items = new List<ShoppingCartItem>();
+			this.Items = new List<ShoppingCartItem>();
 		}
 
 		public List<ShoppingCartItem> Items { get; set; }

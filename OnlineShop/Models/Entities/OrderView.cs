@@ -6,7 +6,6 @@ namespace OnlineShop.Models.Entities
 {
 	public class OrderView
 	{
-
 		public int OrderId { get; set; }
 
 		[Required]
@@ -22,9 +21,10 @@ namespace OnlineShop.Models.Entities
 
 		public OrderView()
 		{
-			Items = new List<ItemView>();
+			this.Items = new List<ItemView>();
 		}
 	}
+
 	public enum StateView
 	{
 		Confirmed,

@@ -21,27 +21,27 @@ namespace OnlineShop.BLL.Services.OrderService
 
 		public void ConfirmOrder(int id)
 		{
-			var order = _db.Orders.GetById(id);
+			OrderUnitOfWork order = this._db.Orders.GetById(id);
 			order.State = StateUnitOfWork.Confirmed;
-			_db.Orders.Edit(order);
-			_db.Save();
+			this._db.Orders.Edit(order);
+			this._db.Save();
 		}
 
 		public void DeclineOrder(int id)
 		{
-			var order = _db.Orders.GetById(id);
+			OrderUnitOfWork order = this._db.Orders.GetById(id);
 			order.State = StateUnitOfWork.Declined;
-			_db.Orders.Edit(order);
-			_db.Save();
+			this._db.Orders.Edit(order);
+			this._db.Save();
 		}
 
 		public bool UpdateOrder(OrderDto orderDto)
 		{
 			try
 			{
-				var order = _mapper.Map<OrderUnitOfWork>(orderDto);
-				_db.Orders.Edit(order);
-				_db.Save();
+				OrderUnitOfWork order = this._mapper.Map<OrderUnitOfWork>(orderDto);
+				this._db.Orders.Edit(order);
+				this._db.Save();
 			}
 			catch (Exception)
 			{
@@ -52,7 +52,7 @@ namespace OnlineShop.BLL.Services.OrderService
 
 		public OrderDto GetOrder(int id)
 		{
-			return _mapper.Map<OrderDto>(_db.Orders.GetById(id));
+			return this._mapper.Map<OrderDto>(this._db.Orders.GetById(id));
 		}
 	}
 }

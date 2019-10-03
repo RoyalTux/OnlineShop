@@ -12,7 +12,7 @@ namespace UnitOfWorkAndRepositories.Entites.Shop
 
 		public CategoryUnitOfWork()
 		{
-			Items = new List<ItemUnitOfWork>();
+			this.Items = new List<ItemUnitOfWork>();
 		}
 	}
 }

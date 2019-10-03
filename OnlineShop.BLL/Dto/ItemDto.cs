@@ -26,7 +26,7 @@ namespace OnlineShop.BLL.Dto
 
 		public ItemDto()
 		{
-			Orders = new List<OrderDto>();
+			this.Orders = new List<OrderDto>();
 		}
 	}
 }

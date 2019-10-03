@@ -8,11 +8,11 @@ namespace OnlineShop.Infrastructure
 	{
 		public WebApiMappingConfig()
 		{
-			CreateMap<CategoryView, CategoryDto>().ReverseMap().MaxDepth(2);
-			CreateMap<ItemView, ItemDto>().ReverseMap().MaxDepth(2);
-			CreateMap<ItemFeaturesView, ItemFeaturesDto>().ReverseMap().MaxDepth(2);
-			CreateMap<OrderView, OrderDto>().ReverseMap().MaxDepth(2);
-			CreateMap<StateView, StateDto>().ReverseMap();
+			this.CreateMap<CategoryView, CategoryDto>().ReverseMap().MaxDepth(2);
+			this.CreateMap<ItemView, ItemDto>().ReverseMap().MaxDepth(2);
+			this.CreateMap<ItemFeaturesView, ItemFeaturesDto>().ReverseMap().MaxDepth(2);
+			this.CreateMap<OrderView, OrderDto>().ReverseMap().MaxDepth(2);
+			this.CreateMap<StateView, StateDto>().ReverseMap();
 		}
 	}
 }

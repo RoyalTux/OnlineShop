@@ -22,9 +22,9 @@ namespace OnlineShop.BLL.Services
 		{
 			try
 			{
-				var category = _mapper.Map<CategoryUnitOfWork>(categoryDto);
-				_db.Categories.Add(category);
-				_db.Save();
+				CategoryUnitOfWork category = this._mapper.Map<CategoryUnitOfWork>(categoryDto);
+				this._db.Categories.Add(category);
+				this._db.Save();
 			}
 			catch (Exception)
 			{
@@ -37,9 +37,9 @@ namespace OnlineShop.BLL.Services
 		{
 			try
 			{
-				var category = _mapper.Map<CategoryUnitOfWork>(categoryDto);
-				_db.Categories.Edit(category);
-				_db.Save();
+				CategoryUnitOfWork category = this._mapper.Map<CategoryUnitOfWork>(categoryDto);
+				this._db.Categories.Edit(category);
+				this._db.Save();
 			}
 			catch (Exception)
 			{
@@ -52,8 +52,8 @@ namespace OnlineShop.BLL.Services
 		{
 			try
 			{
-				_db.Categories.DeleteById(id);
-				_db.Save();
+				this._db.Categories.DeleteById(id);
+				this._db.Save();
 			}
 			catch (Exception)
 			{
@@ -66,9 +66,9 @@ namespace OnlineShop.BLL.Services
 		{
 			try
 			{
-				var itemFeature = _mapper.Map<ItemFeatureUnitOfWork>(itemFeaturesDto);
-				_db.ItemFeatures.Add(itemFeature);
-				_db.Save();
+				ItemFeatureUnitOfWork itemFeature = this._mapper.Map<ItemFeatureUnitOfWork>(itemFeaturesDto);
+				this._db.ItemFeatures.Add(itemFeature);
+				this._db.Save();
 			}
 			catch (Exception)
 			{
@@ -81,9 +81,9 @@ namespace OnlineShop.BLL.Services
 		{
 			try
 			{
-				var itemFeature = _mapper.Map<ItemFeatureUnitOfWork>(itemFeaturesDto);
-				_db.ItemFeatures.Edit(itemFeature);
-				_db.Save();
+				ItemFeatureUnitOfWork itemFeature = this._mapper.Map<ItemFeatureUnitOfWork>(itemFeaturesDto);
+				this._db.ItemFeatures.Edit(itemFeature);
+				this._db.Save();
 			}
 			catch (Exception)
 			{
@@ -96,8 +96,8 @@ namespace OnlineShop.BLL.Services
 		{
 			try
 			{
-				_db.ItemFeatures.DeleteById(id);
-				_db.Save();
+				this._db.ItemFeatures.DeleteById(id);
+				this._db.Save();
 			}
 			catch (Exception)
 			{
@@ -110,9 +110,9 @@ namespace OnlineShop.BLL.Services
 		{
 			try
 			{
-				var item = _mapper.Map<ItemUnitOfWork>(itemDto);
-				_db.Items.Add(item);
-				_db.Save();
+				ItemUnitOfWork item = this._mapper.Map<ItemUnitOfWork>(itemDto);
+				this._db.Items.Add(item);
+				this._db.Save();
 			}
 			catch (Exception)
 			{
@@ -125,9 +125,9 @@ namespace OnlineShop.BLL.Services
 		{
 			try
 			{
-				var item = _mapper.Map<ItemUnitOfWork>(itemDto);
-				_db.Items.Edit(item);
-				_db.Save();
+				ItemUnitOfWork item = this._mapper.Map<ItemUnitOfWork>(itemDto);
+				this._db.Items.Edit(item);
+				this._db.Save();
 			}
 			catch (Exception)
 			{
@@ -140,8 +140,8 @@ namespace OnlineShop.BLL.Services
 		{
 			try
 			{
-				_db.Items.DeleteById(id);
-				_db.Save();
+				this._db.Items.DeleteById(id);
+				this._db.Save();
 			}
 			catch (Exception)
 			{
@@ -152,27 +152,27 @@ namespace OnlineShop.BLL.Services
 
 		public CategoryDto GetCategory(int id)
 		{
-			return _mapper.Map<CategoryDto>(_db.Categories.GetById(id));
+			return this._mapper.Map<CategoryDto>(this._db.Categories.GetById(id));
 		}
 
 		public ItemFeaturesDto GetItemFeatures(int id)
 		{
-			return _mapper.Map<ItemFeaturesDto>(_db.ItemFeatures.GetById(id));
+			return this._mapper.Map<ItemFeaturesDto>(this._db.ItemFeatures.GetById(id));
 		}
 
 		public ItemDto GetItem(int id)
 		{
-			return _mapper.Map<ItemDto>(_db.Items.GetById(id));
+			return this._mapper.Map<ItemDto>(this._db.Items.GetById(id));
 		}
 
 		public OrderDto GetOrder(int id)
 		{
-			return _mapper.Map<OrderDto>(_db.Orders.GetById(id));
+			return this._mapper.Map<OrderDto>(this._db.Orders.GetById(id));
 		}
 
 		public void Dispose(bool disposing)
 		{
-			_db.Dispose();
+			this._db.Dispose();
 		}
 	}
 }

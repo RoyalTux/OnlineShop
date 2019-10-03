@@ -26,18 +26,22 @@ namespace OnlineShop.Controllers
 		[Route("api/adminPanel/items/add")]
 		public IHttpActionResult AddItem([FromBody]ItemView itemView)
 		{
-			if (ModelState.IsValid)
+			if (this.ModelState.IsValid)
 			{
-				var item = _mapper.Map<ItemDto>(itemView);
-				var result = _adminService.AddItem(item);
+				ItemDto item = this._mapper.Map<ItemDto>(itemView);
+				bool result = this._adminService.AddItem(item);
 
 				if (result)
-					return Ok();
+				{
+					return this.Ok();
+				}
 			}
 			else
-				return BadRequest(ModelState);
+			{
+				return this.BadRequest(this.ModelState);
+			}
 
-			return BadRequest();
+			return this.BadRequest();
 		}
 
 		[HttpPut]
@@ -45,42 +49,51 @@ namespace OnlineShop.Controllers
 		[Authorize(Roles = "manager")]
 		public IHttpActionResult UpdateItem([FromBody]ItemView item)
 		{
-			if (ModelState.IsValid)
+			if (this.ModelState.IsValid)
 			{
-				var _item = _mapper.Map<ItemDto>(item);
-				var result = _adminService.UpdateItem(_item);
+				ItemDto _item = this._mapper.Map<ItemDto>(item);
+				bool result = this._adminService.UpdateItem(_item);
 
 				if (result)
-					return Ok();
+				{
+					return this.Ok();
+				}
 			}
 			else
-				return BadRequest(ModelState);
+			{
+				return this.BadRequest(this.ModelState);
+			}
 
-			return BadRequest();
+			return this.BadRequest();
 		}
 
 		[HttpDelete]
 		[Route("api/adminPanel/items/delete/{id}")]
 		public IHttpActionResult DeleteItem(int id)
 		{
-			var result = _adminService.RemoveItem(id);
+			bool result = this._adminService.RemoveItem(id);
 
 			if (result)
-				return Ok();
+			{
+				return this.Ok();
+			}
 
-			return BadRequest();
+			return this.BadRequest();
 		}
 
 		[HttpGet]
 		[Route("api/adminPanel/items/get/{id}")]
 		public IHttpActionResult GetItem(int id)
 		{
-			var item = _adminService.GetItem(id);
+			ItemDto item = this._adminService.GetItem(id);
 
-			if (item == null) return NotFound();
-			var _item = _mapper.Map<ItemView>(item);
-			return Ok(_item);
+			if (item == null)
+			{
+				return this.NotFound();
+			}
 
+			ItemView _item = this._mapper.Map<ItemView>(item);
+			return this.Ok(_item);
 		}
 	}
 }

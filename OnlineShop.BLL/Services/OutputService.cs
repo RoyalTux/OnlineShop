@@ -20,32 +20,32 @@ namespace OnlineShop.BLL.Services
 
 		public ItemFeaturesDto GetItemFeatures(int id)
 		{
-			return _mapper.Map<ItemFeaturesDto>(_db.ItemFeatures.GetById(id));
+			return this._mapper.Map<ItemFeaturesDto>(this._db.ItemFeatures.GetById(id));
 		}
 
 		public ItemDto GetItem(int id)
 		{
-			return _mapper.Map<ItemDto>(_db.Items.GetById(id));
+			return this._mapper.Map<ItemDto>(this._db.Items.GetById(id));
 		}
 
 		public IEnumerable<ItemDto> GetAllItems()
 		{
-			return _mapper.Map<IEnumerable<ItemDto>>(_db.Items.GetAll());
+			return this._mapper.Map<IEnumerable<ItemDto>>(this._db.Items.GetAll());
 		}
 
 		public IEnumerable<ItemDto> GetItemsWithPagination(int page, int pageSize)
 		{
-			var itemsUnitOfWork = _db.Items.GetAll()
+			IEnumerable<UnitOfWorkAndRepositories.Entites.Shop.ItemUnitOfWork> itemsUnitOfWork = this._db.Items.GetAll()
 					 .OrderBy(item => item.ItemId)
 					 .Skip((page - 1) * pageSize)
 					 .Take(pageSize);
 
-			return _mapper.Map<IEnumerable<ItemDto>>(itemsUnitOfWork);
+			return this._mapper.Map<IEnumerable<ItemDto>>(itemsUnitOfWork);
 		}
 
 		public IEnumerable<ItemDto> Search(string request)
 		{
-			var allItems = this.GetAllItems();
+			IEnumerable<ItemDto> allItems = this.GetAllItems();
 
 			return allItems.Where(item => item.ItemName.ToLower().Contains(request.ToLower()));
 		}

@@ -17,7 +17,7 @@ namespace OnlineShop.BLL.Dto
 
 		public OrderDto()
 		{
-			Items = new List<ItemDto>();
+			this.Items = new List<ItemDto>();
 		}
 	}
 
@@ -28,4 +28,3 @@ namespace OnlineShop.BLL.Dto
 		Declined
 	}
 }
-

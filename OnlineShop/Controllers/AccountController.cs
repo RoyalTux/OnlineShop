@@ -21,28 +21,31 @@ namespace OnlineShop.Controllers
 		public IHttpActionResult Login([FromUri]LoginModel model)
 		{
 			SetInitialData();
-			if (!ModelState.IsValid) return BadRequest();
-			var userDto = new UserDto { Email = model.Email, Password = model.Password };
-			var claim = AccountService.Authenticate(userDto);
+			if (!this.ModelState.IsValid)
+			{
+				return this.BadRequest();
+			}
+
+			UserDto userDto = new UserDto { Email = model.Email, Password = model.Password };
+			System.Security.Claims.ClaimsIdentity claim = AccountService.Authenticate(userDto);
 			if (claim == null)
 			{
-				return Ok("Wrong login or password.");
+				return this.Ok("Wrong login or password.");
 			}
 			AuthenticationManager.SignOut();
 			AuthenticationManager.SignIn(new AuthenticationProperties
 			{
 				IsPersistent = true
 			}, claim);
-			return Ok("Log in success.");
+			return this.Ok("Log in success.");
 		}
 
 		[HttpPost]
 		[Route("api/Account/Logout")]
-
 		public IHttpActionResult Logout()
 		{
 			AuthenticationManager.SignOut();
-			return Ok();
+			return this.Ok();
 		}
 
 		[HttpGet]
@@ -51,8 +54,12 @@ namespace OnlineShop.Controllers
 		{
 			SetInitialData();
 			OperationDetails operationDetails;
-			if (!ModelState.IsValid) return BadRequest();
-			var userDto = new UserDto
+			if (!this.ModelState.IsValid)
+			{
+				return this.BadRequest();
+			}
+
+			UserDto userDto = new UserDto
 			{
 				Email = model.Email,
 				Password = model.Password,
@@ -62,7 +69,7 @@ namespace OnlineShop.Controllers
 				Role = "user"
 			};
 			operationDetails = AccountService.Create(userDto);
-			return Ok(operationDetails);
+			return this.Ok(operationDetails);
 		}
 
 		private static void SetInitialData()

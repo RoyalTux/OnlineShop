@@ -9,12 +9,12 @@ namespace OnlineShop.BLL.Infrastructure
 	{
 		public BllMappingConfig()
 		{
-			CreateMap<CategoryDto, CategoryUnitOfWork>().ReverseMap().MaxDepth(2);
-			CreateMap<ItemDto, ItemUnitOfWork>().ReverseMap().MaxDepth(2);
-			CreateMap<ItemFeaturesDto, ItemFeatureUnitOfWork>().ReverseMap().MaxDepth(2);
-			CreateMap<OrderDto, OrderUnitOfWork>().ReverseMap().MaxDepth(2);
-			CreateMap<StateDto, StateUnitOfWork>().ReverseMap();
-			CreateMap<UserDto, UserModelUnitOfWork>().ReverseMap();
+			this.CreateMap<CategoryDto, CategoryUnitOfWork>().ReverseMap().MaxDepth(2);
+			this.CreateMap<ItemDto, ItemUnitOfWork>().ReverseMap().MaxDepth(2);
+			this.CreateMap<ItemFeaturesDto, ItemFeatureUnitOfWork>().ReverseMap().MaxDepth(2);
+			this.CreateMap<OrderDto, OrderUnitOfWork>().ReverseMap().MaxDepth(2);
+			this.CreateMap<StateDto, StateUnitOfWork>().ReverseMap();
+			this.CreateMap<UserDto, UserModelUnitOfWork>().ReverseMap();
 		}
 	}
 }

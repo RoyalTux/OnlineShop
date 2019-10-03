@@ -13,14 +13,14 @@ namespace OnlineShop.Controllers
 		private readonly IUserService _user;
 		private readonly IMapper _mapper;
 		private readonly IShoppingCart _icart;
-		private ShoppingCartView _cartView;
+		private readonly ShoppingCartView _cartView;
 
 		public UserController(IUserService user, IMapper mapper, IShoppingCart icart)
 		{
-			_user = user;
-			_mapper = mapper;
+			this._user = user;
+			this._mapper = mapper;
 			this._icart = icart;
-			_cartView = new ShoppingCartView();
+			this._cartView = new ShoppingCartView();
 		}
 
 		public UserController()
@@ -31,54 +31,63 @@ namespace OnlineShop.Controllers
 		[Route("api/CartPanel/addItem")]
 		public IHttpActionResult AddItem([FromBody] ItemView item, int quantity)
 		{
-			if (ModelState.IsValid)
+			if (this.ModelState.IsValid)
 			{
-				var _item = _mapper.Map<ItemDto>(item);
-				var result = _user.AddItem(_item, quantity, _icart);
+				ItemDto _item = this._mapper.Map<ItemDto>(item);
+				bool result = this._user.AddItem(_item, quantity, this._icart);
 
 				if (result)
-					return Ok();
+				{
+					return this.Ok();
+				}
 			}
 			else
 			{
-				return BadRequest(ModelState);
+				return this.BadRequest(this.ModelState);
 			}
 
-			return BadRequest();
+			return this.BadRequest();
 		}
 
 		[HttpDelete]
 		[Route("api/CartPanel/removeItem")]
 		public IHttpActionResult RemoveItem([FromBody] ItemView item)
 		{
-			var _item = _mapper.Map<ItemDto>(item);
-			var result = _user.RemoveItem(_item, _icart);
+			ItemDto _item = this._mapper.Map<ItemDto>(item);
+			bool result = this._user.RemoveItem(_item, this._icart);
 			if (result)
-				return Ok();
-			return BadRequest();
+			{
+				return this.Ok();
+			}
+
+			return this.BadRequest();
 		}
 
 		[HttpPut]
 		[Route("api/CartPanel/composeOrder")]
 		public IHttpActionResult ComposeCart()
 		{
-			var cart = _user.ComposeCart(_icart);
+			IShoppingCart cart = this._user.ComposeCart(this._icart);
 			if (cart == null)
-				return NotFound();
+			{
+				return this.NotFound();
+			}
 
-			return Ok(cart);
+			return this.Ok(cart);
 		}
 
 		[HttpPost]
 		[Route("api/OrderPanel/addOrder")]
 		public IHttpActionResult MakeOrder()
 		{
-			var _order = _user.MakeOrder(_icart);
+			OrderDto _order = this._user.MakeOrder(this._icart);
 			if (_order == null)
-				return NotFound();
+			{
+				return this.NotFound();
+			}
 
-			var _ordermap = _mapper.Map<OrderView>(_order);
-			return Ok(_ordermap);
+			OrderView _ordermap = this._mapper.Map<OrderView>(_order);
+			return this.Ok(_ordermap);
 		}
 	}
 }

@@ -46,13 +46,13 @@ namespace OnlineShop.App_Start
 		/// <returns>The created kernel.</returns>
 		private static IKernel CreateKernel()
 		{
-			var webApiNinjectModule = new WebApiNinjectModule();
-			var bbLNinjectModule = new BllNinjectModule();
-			var unitOfWorkNinjectModule = new UnitOfWorkNinjectModule("InternetShopConnection", "AccountConnection");
+			WebApiNinjectModule webApiNinjectModule = new WebApiNinjectModule();
+			BllNinjectModule bbLNinjectModule = new BllNinjectModule();
+			UnitOfWorkNinjectModule unitOfWorkNinjectModule = new UnitOfWorkNinjectModule("InternetShopConnection", "AccountConnection");
 
-			var modules = new INinjectModule[] { webApiNinjectModule, bbLNinjectModule, unitOfWorkNinjectModule };
+			INinjectModule[] modules = new INinjectModule[] { webApiNinjectModule, bbLNinjectModule, unitOfWorkNinjectModule };
 
-			var kernel = new StandardKernel(modules);
+			StandardKernel kernel = new StandardKernel(modules);
 
 			try
 			{

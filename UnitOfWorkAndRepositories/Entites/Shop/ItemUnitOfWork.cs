@@ -18,7 +18,6 @@ namespace UnitOfWorkAndRepositories.Entites.Shop
 
 		public ItemFeatureUnitOfWork ItemCharacteristic { get; set; }
 
-
 		public int? CategoryId { get; set; }
 
 		public CategoryUnitOfWork Category { get; set; }
@@ -27,7 +26,7 @@ namespace UnitOfWorkAndRepositories.Entites.Shop
 
 		public ItemUnitOfWork()
 		{
-			Orders = new List<OrderUnitOfWork>();
+			this.Orders = new List<OrderUnitOfWork>();
 		}
 	}
 }
