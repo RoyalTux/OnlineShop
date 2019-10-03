@@ -1,4 +1,6 @@
 ﻿using Ninject.Modules;
+using OnlineShop.BLL.Entity.Shop;
+using OnlineShop.BLL.Interfaces.OrderInterfaces;
 
 namespace OnlineShop.Infrastructure
 {
@@ -6,7 +8,7 @@ namespace OnlineShop.Infrastructure
 	{
 		public override void Load()
 		{
-			//Bind<IShoppingCart>().To<ShoppingCart>().InSingletonScope();
+			Bind<IShoppingCart>().To<ShoppingCart>().InSingletonScope();
 		}
 	}
 }

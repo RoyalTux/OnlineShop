@@ -1,4 +1,9 @@
+using Ninject.Modules;
 using Ninject.Web.Common.WebHost;
+using Ninject.Web.WebApi;
+using OnlineShop.BLL.Infrastructure;
+using OnlineShop.Infrastructure;
+using UnitOfWorkAndRepositories.Infrastructure;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(OnlineShop.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(OnlineShop.App_Start.NinjectWebCommon), "Stop")]
@@ -41,11 +46,20 @@ namespace OnlineShop.App_Start
 		/// <returns>The created kernel.</returns>
 		private static IKernel CreateKernel()
 		{
-			var kernel = new StandardKernel();
+			var webApiNinjectModule = new WebApiNinjectModule();
+			var bbLNinjectModule = new BllNinjectModule();
+			var unitOfWorkNinjectModule = new UnitOfWorkNinjectModule("InternetShopConnection", "AccountConnection");
+
+			var modules = new INinjectModule[] { webApiNinjectModule, bbLNinjectModule, unitOfWorkNinjectModule };
+
+			var kernel = new StandardKernel(modules);
+
 			try
 			{
 				kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
 				kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
+
+				System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
 				RegisterServices(kernel);
 				return kernel;
 			}

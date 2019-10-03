@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Security.Claims;
 using OnlineShop.BLL.Dto;
 using OnlineShop.BLL.Infrastructure.Account;
 
 namespace OnlineShop.BLL.Interfaces
 {
-	public interface IAccountService
+	public interface IAccountService : IDisposable
 	{
 		OperationDetails Create(UserDto userDto);
 		ClaimsIdentity Authenticate(UserDto userDto);
