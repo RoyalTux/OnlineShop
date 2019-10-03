@@ -95,31 +95,10 @@ namespace OnlineShop.BLL.Services.OrderService
 				Items = items,
 				Time = DateTime.Now,
 				Price = cart.overallPrice,
-				State = StateDto.In_process
+				State = StateDto.InProcess
 
 			};
 			return order;
 		}
-
-		//public void MakeOrder(IEnumerable<int> itemIds)
-		//{
-		//	var items = itemIds.Select(index => _mapper.Map<ItemDto>(_db.Items.GetById(index))).ToList();
-
-		//	//var checkPayment = 0.00;
-
-		//	var orders = items.Select(item => new OrderUnitOfWork()).ToList();
-
-		//	var order = new OrderDto
-		//	{
-		//		Time = DateTime.Now,
-		//		Items = items
-		//	};
-
-		//	var orderMapped = _mapper.Map<OrderUnitOfWork>(order);
-
-		//	_db.Orders.Add(orderMapped);
-		//	_db.Save();
-		//}
-
 	}
 }

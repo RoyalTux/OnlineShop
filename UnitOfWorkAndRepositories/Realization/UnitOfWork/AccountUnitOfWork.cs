@@ -42,26 +42,26 @@ namespace UnitOfWorkAndRepositories.Realization.UnitOfWork
 				{
 					return new OperationDetailsUnitOfWork(false, result.Errors.FirstOrDefault(), "");
 				}
-				// добавляем роль
+
 				this.UserManager.AddToRole(user.Id, userDto.Role);
-				// создаем профиль клиента
+
 				var clientProfile = new UserProfileUnitOfWork { Id = user.Id, Address = userDto.Address, Name = userDto.Name };
 				this.ProfileManager.Create(clientProfile);
 				this.Save();
-				return new OperationDetailsUnitOfWork(true, "Регистрация успешно пройдена", "");
+				return new OperationDetailsUnitOfWork(true, "Registration completed successfully", "");
 			}
 			else
 			{
-				return new OperationDetailsUnitOfWork(false, "Пользователь с таким логином уже существует", "Email");
+				return new OperationDetailsUnitOfWork(false, "A user with this login already exists", "Email");
 			}
 		}
 
 		public ClaimsIdentity Authenticate(UserModelUnitOfWork userDto)
 		{
 			ClaimsIdentity claim = null;
-			// находим пользователя
+
 			var user = this.UserManager.Find(userDto.Email, userDto.Password);
-			// авторизуем его и возвращаем объект ClaimsIdentity
+
 			if (user != null)
 			{
 				claim = this.UserManager.CreateIdentity(user,
@@ -71,7 +71,6 @@ namespace UnitOfWorkAndRepositories.Realization.UnitOfWork
 			return claim;
 		}
 
-		// начальная инициализация бд
 		public void SetInitialData(UserModelUnitOfWork adminDto, List<string> roles)
 		{
 			foreach (var role in from roleName in roles let role = this.RoleManager.FindByName(roleName)
@@ -96,9 +95,9 @@ namespace UnitOfWorkAndRepositories.Realization.UnitOfWork
 
 		private bool _disposed;
 
-		public void Dispose(bool disposing)
+		private void Dispose(bool disposing)
 		{
-			if (this._disposed) return;
+			if (_disposed) return;
 			if (disposing)
 			{
 				this.UserManager.Dispose();

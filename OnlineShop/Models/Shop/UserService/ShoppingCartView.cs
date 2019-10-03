@@ -8,7 +8,8 @@ namespace OnlineShop.Models.Shop.UserService
 		{
 			items = new List<ShoppingCartItemView>();
 		}
-		public List<ShoppingCartItemView> items { get; set; }
+
+		private List<ShoppingCartItemView> items { get; set; }
 		public double overallPrice { get; set; }
 	}
 }

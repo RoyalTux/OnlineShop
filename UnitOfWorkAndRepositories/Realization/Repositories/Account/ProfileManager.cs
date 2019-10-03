@@ -7,7 +7,7 @@ namespace UnitOfWorkAndRepositories.Realization.Repositories.Account
 {
 	public class ProfileManager : IProfileManager
 	{
-		private AccountDbContext Database { get; set; }
+		private AccountDbContext Database { get; }
 
 		public ProfileManager(AccountDbContext db)
 		{

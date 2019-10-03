@@ -8,8 +8,6 @@ namespace UnitOfWorkAndRepositories.Interfaces.Shop
 	{
 		IEnumerable<TInputEntity> GetAll();
 
-		//IEnumerable<TInputEntity> FindBy(Expression<Func<TInputEntity, bool>> predicate);
-
 		void Add(TInputEntity entity);
 
 		void Delete(TInputEntity entity);

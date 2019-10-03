@@ -29,7 +29,7 @@ namespace OnlineShop.Domain.Entities.Shop
 	public enum State
 	{
 		Confirmed,
-		In_process,
+		InProcess,
 		Declined
 	}
 }

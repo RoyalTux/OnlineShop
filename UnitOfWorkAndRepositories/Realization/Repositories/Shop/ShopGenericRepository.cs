@@ -11,14 +11,14 @@ namespace UnitOfWorkAndRepositories.Realization.Repositories.Shop
 		where TInputEntity : class
 		where TDomainEntity : class
 	{
-		protected IEfShopContext Entities;
+		private readonly IEfShopContext _entities;
 		protected readonly IDbSet<TDomainEntity> Dbset;
 		protected readonly IMapper Mapper;
 
-		public ShopGenericRepository(IEfShopContext context, IMapper mapper)
+		protected ShopGenericRepository(IEfShopContext context, IMapper mapper)
 		{
-			Entities = context;
-			Dbset = Entities.Set<TDomainEntity>();
+			_entities = context;
+			Dbset = _entities.Set<TDomainEntity>();
 			this.Mapper = mapper;
 		}
 
@@ -50,7 +50,7 @@ namespace UnitOfWorkAndRepositories.Realization.Repositories.Shop
 		{
 			var entity = Mapper.Map<TDomainEntity>(inputEntity);
 			//_entities.Entry(_entity).State = EntityState.Detached;
-			Entities.Entry(entity).State = EntityState.Modified;
+			_entities.Entry(entity).State = EntityState.Modified;
 
 		}
 	}

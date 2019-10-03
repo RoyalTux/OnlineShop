@@ -22,7 +22,7 @@ namespace OnlineShop.BLL.Dto
 
 		public CategoryDto Category { get; set; }
 
-		public ICollection<OrderDto> Orders { get; set; }
+		private ICollection<OrderDto> Orders { get; set; }
 
 		public ItemDto()
 		{

@@ -7,7 +7,7 @@ using UnitOfWorkAndRepositories.Realization.Repositories.Shop;
 
 namespace UnitOfWorkAndRepositories.Realization.UnitOfWork
 {
-	public class ShopUnitOfWork : IShopUnitOfWork //UnitOfWork for predmet area
+	public class ShopUnitOfWork : IShopUnitOfWork
 	{
 		private readonly IEfShopContext _dbContext;
 		private readonly IMapper _mapper;
@@ -35,12 +35,11 @@ namespace UnitOfWorkAndRepositories.Realization.UnitOfWork
 		public IOrderRepository Orders =>
 			_orderRepository ?? (_orderRepository = new OrderRepository(_dbContext, _mapper));
 
-		public int Save()// Save changes
+		public int Save()
 		{
 			return _dbContext.SaveChanges();
 		}
 
-		// Disposes the current object
 		public void Dispose()
 		{
 			Dispose(true);
@@ -48,7 +47,7 @@ namespace UnitOfWorkAndRepositories.Realization.UnitOfWork
 		}
 
 		private bool _disposed;
-		// Disposes all external resources.
+
 		private void Dispose(bool disposing)
 		{
 			if (!this._disposed)

@@ -24,7 +24,7 @@ namespace OnlineShop.BLL.Dto
 	public enum StateDto
 	{
 		Confirmed,
-		In_process,
+		InProcess,
 		Declined
 	}
 }

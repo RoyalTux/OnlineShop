@@ -23,7 +23,7 @@ namespace UnitOfWorkAndRepositories.Entites.Shop
 
 		public CategoryUnitOfWork Category { get; set; }
 
-		public ICollection<OrderUnitOfWork> Orders { get; set; }
+		private ICollection<OrderUnitOfWork> Orders { get; set; }
 
 		public ItemUnitOfWork()
 		{

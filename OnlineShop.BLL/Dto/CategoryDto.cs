@@ -8,7 +8,7 @@ namespace OnlineShop.BLL.Dto
 
 		public string CategoryName { get; set; }
 
-		public ICollection<ItemDto> Items { get; set; }
+		private ICollection<ItemDto> Items { get; set; }
 
 		public CategoryDto()
 		{

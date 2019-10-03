@@ -8,7 +8,7 @@ namespace UnitOfWorkAndRepositories.Entites.Shop
 
 		public string CategoryName { get; set; }
 
-		public ICollection<ItemUnitOfWork> Items { get; set; }
+		private ICollection<ItemUnitOfWork> Items { get; set; }
 
 		public CategoryUnitOfWork()
 		{

@@ -28,7 +28,7 @@ namespace OnlineShop.Models.Entities
 	public enum StateView
 	{
 		Confirmed,
-		In_process,
+		InProcess,
 		Declined
 	}
 }

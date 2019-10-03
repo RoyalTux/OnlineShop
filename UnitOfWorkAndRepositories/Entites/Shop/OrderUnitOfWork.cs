@@ -13,7 +13,7 @@ namespace UnitOfWorkAndRepositories.Entites.Shop
 
 		public StateUnitOfWork State { get; set; }
 
-		public ICollection<ItemUnitOfWork> Items { get; set; }
+		private ICollection<ItemUnitOfWork> Items { get; set; }
 
 		public OrderUnitOfWork()
 		{
@@ -24,7 +24,7 @@ namespace UnitOfWorkAndRepositories.Entites.Shop
 	public enum StateUnitOfWork
 	{
 		Confirmed,
-		In_process,
+		InProcess,
 		Declined
 	}
 }
